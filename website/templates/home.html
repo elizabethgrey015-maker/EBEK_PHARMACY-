@@ -1,0 +1,17 @@
+{% extends "base.html" %}{% block content %}
+<h3>💊 POS Terminal - EBEK PHARMACY</h3>
+<div class="row mt-3">
+<div class="col-md-8">
+<input type="text" id="search" class="form-control" placeholder="🔍 Search drug to sell...">
+<table class="table table-striped mt-3">
+<thead class="table-success"><tr><th>Drug</th><th>Price</th><th>Stock</th><th>Add</th></tr></thead>
+<tbody>
+{% for drug in drugs %}
+<tr><td>{{ drug.name }}</td><td>₵{{ drug.price }}</td><td>{{ drug.stock }}</td><td><button class="btn btn-sm btn-success">Add to Cart</button></td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<div class="col-md-4"><div class="card p-3"><h5>🛒 Cart</h5><p>Select drugs to sell</p></div></div>
+</div>
+{% endblock %}

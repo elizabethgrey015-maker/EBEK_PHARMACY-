@@ -1,0 +1,83 @@
+<!doctype html>
+<html><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+<title>EBEK PHARMACY - Kintampo</title>
+<style>
+:root{
+ --pharma-primary:#0e8a7b; /* Standard Medical Teal - trusted pharmacy color */
+ --pharma-dark:#0a5c52;
+ --pharma-blue:#2563eb;
+ --bg-body:#f4f8f7;
+ --card-shadow:0 4px 20px rgba(14,138,123,0.08);
+}
+body{ background:var(--bg-body); font-family:'Inter','Segoe UI',sans-serif; color:#1e293b; }
+.navbar-pharma{
+ background:#ffffff !important;
+ border-bottom:3px solid var(--pharma-primary);
+ box-shadow:0 2px 15px rgba(0,0,0,0.05);
+ z-index:1100 !important;
+ padding:10px 0;
+}
+.logo-box{ line-height:1.1; }
+.logo-main{ color:var(--pharma-primary) !important; font-weight:900; font-size:21px; letter-spacing:0.3px; }
+.logo-sub{ color:#64748b; font-size:11px; font-weight:700; letter-spacing:2px; margin-left:32px; margin-top:1px; text-transform:uppercase; }
+.btn-pharma{ background:var(--pharma-primary); color:white; border:none; border-radius:8px; font-weight:600; }
+.btn-pharma:hover{ background:var(--pharma-dark); color:white; }
+.btn-refresh{ background:#ffffff; border:1px solid #e2e8f0; color:#475569; border-radius:8px; }
+.btn-refresh:hover{ border-color:var(--pharma-primary); color:var(--pharma-primary); }
+.dropdown-menu{ z-index:1200 !important; border-radius:14px; border:none; box-shadow:0 15px 40px rgba(0,0,0,0.12); padding:8px; }
+.dropdown-item{ border-radius:8px; padding:10px 12px; font-weight:500; }
+.dropdown-item:hover{ background:#e6f4f1; color:var(--pharma-dark); }
+/* WHOLE WEBSITE CARDS, TABLES, INPUTS */
+.card{ border:none; border-radius:14px; box-shadow:var(--card-shadow); }
+.card-header{ background:var(--pharma-primary) !important; color:white !important; font-weight:700; border-radius:14px 14px 0 0 !important; }
+.table thead{ background:var(--pharma-primary) !important; color:white; }
+.table thead th{ background:var(--pharma-primary) !important; color:white !important; border:none; font-weight:600; }
+.form-control{ border-radius:10px; border:1px solid #e2e8f0; padding:10px 14px; }
+.form-control:focus{ border-color:var(--pharma-primary); box-shadow:0 0 0 3px rgba(14,138,123,0.15); }
+.alert{ border-radius:10px; border:none; }
+h5{ color:var(--pharma-primary) !important; }
+</style>
+</head><body>
+
+<nav class="navbar navbar-pharma navbar-expand-lg sticky-top">
+<div class="container-fluid px-3">
+<a class="navbar-brand logo-box" href="/">
+<div class="logo-main">💊 EBEK PHARMACY</div>
+<div class="logo-sub">Kintampo</div>
+</a>
+{% if user.is_authenticated %}
+<div class="d-flex align-items-center gap-2 ms-auto">
+<span class="small text-muted d-none d-md-block">Hi, <b>{{ user.first_name }}</b></span>
+<button class="btn btn-refresh btn-sm px-3" onclick="location.reload()" title="Refresh All"><i class="bi bi-arrow-clockwise"></i> Refresh</button>
+<div class="dropdown">
+<button class="btn btn-pharma dropdown-toggle px-3" type="button" data-bs-toggle="dropdown">☰ Menu</button>
+<ul class="dropdown-menu dropdown-menu-end">
+<li><h6 class="dropdown-header" style="color:var(--pharma-primary); font-size:10px; letter-spacing:1px;">WORK STATION</h6></li>
+<li><a class="dropdown-item" href="/">🛒 POS Terminal</a></li>
+<li><a class="dropdown-item" href="/inventory">📦 Inventory</a></li>
+<li><a class="dropdown-item" href="/add-drug">➕ Add New Drug</a></li>
+<li><a class="dropdown-item" href="/sales">📊 Sales History</a></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item" href="#" onclick="location.reload(); return false;">🔄 Refresh Page</a></li>
+<li><span class="dropdown-item-text small text-muted">🏥 Kintampo Branch</span></li>
+<li><hr class="dropdown-divider"></li>
+<li><a class="dropdown-item text-danger fw-bold" href="/logout">🚪 Logout</a></li>
+</ul>
+</div>
+</div>
+{% endif %}
+</div>
+</nav>
+
+<div class="container mt-4">
+{% with messages = get_flashed_messages(with_categories=true) %}
+{% if messages %}{% for cat, msg in messages %}
+<div class="alert alert-{{ 'danger' if cat=='error' else 'success' }}">{{ msg }}</div>
+{% endfor %}{% endif %}{% endwith %}
+{% block content %}{% endblock %}
+</div>
+</body></html>

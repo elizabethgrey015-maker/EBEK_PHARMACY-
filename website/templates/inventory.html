@@ -1,0 +1,39 @@
+{% extends "base.html" %}{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+<h5 class="fw-bold">Inventory - EBEK PHARMACY</h5>
+<a href="/add-drug" class="btn btn-sm text-white" style="background:#0e8a7b;">+ Add Drug</a>
+</div>
+
+<input type="text" id="invSearch" class="form-control mb-3" placeholder="🔍 Search drug name...">
+
+<div class="card">
+<div class="table-responsive">
+<table class="table table-hover mb-0">
+<thead style="background:#2c7a7b; color:white;">
+<tr><th>Drug Name</th><th>Category</th><th>Price (GHS)</th><th>Stock</th><th>Action</th></tr>
+</thead>
+<tbody id="invBody">
+{% for drug in drugs %}
+<tr>
+<td>{{ drug.name }}</td>
+<td>{{ drug.category }}</td>
+<td>{{ "%.2f"|format(drug.price or 0) }}</td>
+<td><span class="badge" style="background:#0e8a7b;">{{ drug.stock }}</span></td>
+<td>
+<a href="/edit-drug/{{ drug.id }}" class="btn btn-sm btn-primary me-1">Edit</a>
+<a href="/delete-drug/{{ drug.id }}" class="btn btn-sm btn-danger" onclick="return confirm('Delete {{ drug.name }}?')">Delete</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+
+<script>
+document.getElementById('invSearch').addEventListener('keyup', function(){
+ let f=this.value.toLowerCase();
+ document.querySelectorAll('#invBody tr').forEach(r=>{ r.style.display=r.textContent.toLowerCase().includes(f)?'':'none'; });
+});
+</script>
+{% endblock %}

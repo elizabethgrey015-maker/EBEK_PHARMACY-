@@ -1,0 +1,33 @@
+{% extends "base.html" %}{% block content %}
+<div class="row justify-content-center mt-4">
+<div class="col-md-5">
+<div class="card shadow rounded-4 border-0">
+<div class="card-body p-4">
+  <h3 class="text-center mb-1">Create Account</h3>
+  <p class="text-center text-muted small">EBEK PHARMACY System</p>
+
+  <form method="POST" autocomplete="on">
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" autocomplete="email" placeholder="Enter email" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">First Name</label>
+      <input type="text" class="form-control" name="firstName" autocomplete="given-name" placeholder="First name" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password1" autocomplete="new-password" placeholder="Min 7 characters" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Confirm Password</label>
+      <input type="password" class="form-control" name="password2" autocomplete="new-password" placeholder="Confirm password" required>
+    </div>
+    <button type="submit" class="btn btn-success w-100 py-2 fw-bold">Create Account</button>
+    <p class="text-center mt-3 small">Already have account? <a href="/login">Login</a></p>
+  </form>
+</div>
+</div>
+</div>
+</div>
+{% endblock %}

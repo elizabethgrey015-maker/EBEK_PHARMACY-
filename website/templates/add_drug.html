@@ -1,0 +1,10 @@
+{% extends "base.html" %}{% block content %}
+<form method="POST" style="max-width:500px; margin:auto;">
+<h3>➕ Add New Drug</h3>
+<input class="form-control mb-2" name="name" placeholder="Drug Name" required>
+<input class="form-control mb-2" name="price" type="number" step="0.01" placeholder="Price GHS" required>
+<input class="form-control mb-2" name="stock" type="number" placeholder="Stock" required>
+<input class="form-control mb-3" name="category" placeholder="Category" required>
+<button class="btn btn-primary w-100">Add Drug</button>
+</form>
+{% endblock %}

@@ -1,0 +1,42 @@
+{% extends "base.html" %}{% block content %}
+<div class="row justify-content-center mt-5">
+<div class="col-md-5">
+<div class="card shadow rounded-4 border-0">
+<div class="card-body p-4">
+  <h3 class="text-center mb-1">💊 EBEK PHARMACY</h3>
+  <p class="text-center text-muted small">Kintampo - Bono East</p>
+  <h5 class="text-center mt-3">Login</h5>
+
+  <form method="POST" autocomplete="on">
+    <div class="mb-3">
+      <label class="form-label">Email</label>
+      <input type="email" class="form-control" name="email" autocomplete="username email" placeholder="you@ebek.com" required>
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Password</label>
+      <input type="password" class="form-control" name="password" id="pass" autocomplete="current-password" placeholder="Enter password" required>
+      <div class="form-check mt-2">
+        <input type="checkbox" class="form-check-input" onclick="showPass()">
+        <label class="form-check-label small">Show password</label>
+      </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" name="remember" id="remember" checked>
+        <label class="form-check-label small" for="remember">Remember me</label>
+      </div>
+      <a href="/forgot-password" class="small text-decoration-none">Forgot password?</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100 py-2 fw-bold">Login</button>
+    <p class="text-center mt-3 small">No account? <a href="/sign-up">Sign Up</a></p>
+  </form>
+</div>
+</div>
+</div>
+</div>
+<script>
+function showPass(){ let p=document.getElementById('pass'); p.type = p.type==='password' ? 'text' : 'password'; }
+</script>
+{% endblock %}
